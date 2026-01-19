@@ -44,7 +44,7 @@ const MovieList = () => {
               <option value="">Sort By</option>
               <option value="title">Title</option>
               <option value="rating">Rating</option>
-              <option value="release_year">Release Year</option>
+              <option value="year">Release Year</option>
             </select>
             <select
               value={filters.order}
