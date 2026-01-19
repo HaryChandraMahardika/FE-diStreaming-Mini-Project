@@ -2,18 +2,20 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   try {
-    // Backend HTTP Laravel
-    const backendBase = "http://203.194.115.210:8008";
+    // Backend Laravel VPS HTTP
+    const backendBase = "http://203.194.115.210:8008/api";
 
-    // Gabungkan URL request asli
-    const url = `${backendBase}${req.url}`;
+    // req.query.all adalah array path, gabungkan jadi string
+    const path = req.query.all.join("/");
+
+    const url = `${backendBase}/${path}`;
 
     const response = await axios({
       method: req.method,
       url,
       headers: {
         ...req.headers,
-        host: undefined, // hapus host header lama
+        host: undefined, // hapus header host lama
       },
       data: req.body,
     });
