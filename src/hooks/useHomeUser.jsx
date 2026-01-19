@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
-import api from "../services/api";
 
 export const useHomeUser = () => {
   const [movies, setMovies] = useState([]);
@@ -9,7 +8,7 @@ export const useHomeUser = () => {
   const fetchHomeMovies = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await api.get("movies?all=true");
+      const res = await axios.get("/api/movies?all=true");
       if (res.data.success) {
         setMovies(res.data.data);
       }

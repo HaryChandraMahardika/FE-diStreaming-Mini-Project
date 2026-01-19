@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import api from "../services/api";
 
 export const useMovieDetail = (id) => {
   const [movie, setMovie] = useState(null);
@@ -16,7 +15,7 @@ export const useMovieDetail = (id) => {
 
     try {
       setLoading(true);
-      const res = await api.get(`movies/${id}`, {
+      const res = await axios.get(`/api/movies/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 

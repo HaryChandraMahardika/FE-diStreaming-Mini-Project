@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import api from "../services/api";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ export const useLogin = () => {
         password: form.password,
       };
 
-      const res = await api.post("login", payload);
+      const res = await axios.post("/api/login", payload);
       const { token, user } = res.data.data;
 
       if (token) {

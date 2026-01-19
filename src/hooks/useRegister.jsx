@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import api from "../services/api";
 
 export const useRegister = () => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ export const useRegister = () => {
     setErrors({});
 
     try {
-      const res = await api.post('register', formData);
+      const res = await axios.post('/api/register', formData);
       
       if (res.data.success) {
         localStorage.setItem('token', res.data.data.token);

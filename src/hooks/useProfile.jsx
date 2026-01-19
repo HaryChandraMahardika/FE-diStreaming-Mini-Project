@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import api from "../services/api";
 
 export const useProfile = () => {
   const [user, setUser] = useState(null);
@@ -23,7 +22,7 @@ export const useProfile = () => {
         return;
       }
 
-      const res = await api.get("me", {
+      const res = await axios.get("/api/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

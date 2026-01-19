@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import api from "../services/api";
 
 const useCategory = () => {
   const [genres, setGenres] = useState([]);
@@ -10,8 +9,8 @@ const useCategory = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await api.get(
-          "categories?all=true"
+        const res = await axios.get(
+          "/api/categories?all=true"
         );
         if (res.data.success) {
           setGenres(res.data.data);

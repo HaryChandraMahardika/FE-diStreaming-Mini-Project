@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
-import api from "../services/api";
 
 export const useMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -26,7 +25,7 @@ export const useMovies = () => {
   const fetchMovies = useCallback(async (currentFilters) => {
     try {
       setLoading(true);
-      const res = await api.get("movies", {
+      const res = await axios.get("/api/movies", {
         params: currentFilters,
       });
       if (res.data.success) {
@@ -44,7 +43,7 @@ export const useMovies = () => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
 
-    api.get("categories")
+    axios.get("/api/categories")
       .then((res) => setCategories(res.data.data))
       .catch(console.error);
   }, []);

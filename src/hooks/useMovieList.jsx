@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import axios from "axios";
-import api from "../services/api";
 
 
 export const useMovieList = () => {
@@ -10,7 +9,7 @@ export const useMovieList = () => {
   const fetchMovies = useCallback(async (params = { all: true }) => {
     try {
       setLoading(true);
-      const response = await api.get('movies', { params });
+      const response = await axios.get('/api/movies', { params });
       if (response.data.success) {
         setMovies(response.data.data);
       }
