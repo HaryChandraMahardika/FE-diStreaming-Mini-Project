@@ -261,7 +261,7 @@ Frontend-Distreaming
 
 > [!IMPORTANT]
 >
-> - Gunakan akun demo atau daftar akun baru untuk mengakses fitur admin.
+> - Gunakan akun demo atau daftar akun baru untuk mengakses fitur user.
 > - Pastikan koneksi internet stabil karena aplikasi menggunakan API dari Vercel.
 
 ---
