@@ -20,13 +20,14 @@ const FeatureSection = () => {
   ];
 
   return (
-    <div className="bg-black text-white py-24 px-8 md:px-20 border-t border-gray-900">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+    <div className="bg-black text-white py-16 md:py-24 px-6 md:px-20 border-t border-gray-900">
+      {/* Grid: 1 kolom di mobile, 3 kolom di desktop */}
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-center">
         {features.map((feature, index) => (
-          <div key={index} className="flex flex-col items-center space-y-6 group">
+          <div key={index} className="flex flex-col items-center space-y-4 md:space-y-6 group">
             
-            
-            <div className="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+            {/* Image Container: Ukuran adaptif, lebih kecil di mobile */}
+            <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                <img 
                 src={feature.image} 
                 alt={feature.title} 
@@ -34,13 +35,13 @@ const FeatureSection = () => {
               />
             </div>
             
-            
-            <h3 className="text-3xl font-bold pt-4 tracking-tight text-white">
+            {/* Judul: Ukuran font adaptif */}
+            <h3 className="text-2xl md:text-3xl font-bold pt-2 md:pt-4 tracking-tight text-white">
               {feature.title}
             </h3>
             
-            
-            <p className="text-[#aaaaaa] text-xl leading-relaxed px-2 max-w-sm">
+            {/* Deskripsi: Ukuran font & line-height adaptif */}
+            <p className="text-[#aaaaaa] text-base md:text-xl leading-relaxed px-2 max-w-sm">
               {feature.description}
             </p>
           </div>

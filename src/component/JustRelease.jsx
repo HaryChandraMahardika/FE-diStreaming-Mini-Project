@@ -14,11 +14,14 @@ const JustRelease = ({ movies }) => {
   if (filteredMovies.length === 0) return null;
 
   return (
-    <section className="py-10">
-      <div className="flex justify-between items-end mb-8">
+    <section className="py-8 md:py-10 px-4 md:px-0">
+      <div className="flex justify-between items-end mb-6 md:mb-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Just Release</h2>
-          <p className="text-green-500 text-sm flex items-center gap-2">
+          {/* Ukuran text h2 mengecil di mobile */}
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+            Just Release
+          </h2>
+          <p className="text-green-500 text-xs md:text-sm flex items-center gap-2 mt-1">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
             Trending in 2025
           </p>
@@ -27,12 +30,20 @@ const JustRelease = ({ movies }) => {
 
       <Swiper
         modules={[Navigation]}
-        spaceBetween={20}
-        slidesPerView={2}
+        spaceBetween={12} // Jarak antar kartu lebih rapat di mobile
+        slidesPerView={2.2} // Menampilkan 2 kartu penuh dan sedikit bagian kartu ke-3
         navigation={true}
         breakpoints={{
-          640: { slidesPerView: 3 },
-          1024: { slidesPerView: 5 }, 
+          // Tablet
+          640: { 
+            slidesPerView: 3.5,
+            spaceBetween: 20 
+          },
+          // Desktop
+          1024: { 
+            slidesPerView: 5,
+            spaceBetween: 20 
+          }, 
         }}
         className="movie-swiper"
       >

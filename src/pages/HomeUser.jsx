@@ -16,15 +16,24 @@ const HomeUser = ({ onLogout }) => {
   );
 
   return (
-    <div className="bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden">
+    <div className="bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden w-full flex flex-col">
+      {/* Navbar sudah otomatis handle state loggedIn */}
       <Navbar onLogout={onLogout} isLoggedIn={true} />
       
+      {/* Hero Movie Section */}
       {movies.length > 0 && <Hero movie={movies[0]} />}
 
-      <main className="px-6 md:px-12 relative z-20">
-        <div className="space-y-12 py-10">
+      {/* Main Content Area */}
+      {/* px-4 di mobile agar margin tidak terlalu lebar, md:px-12 di desktop */}
+      <main className="px-4 sm:px-6 md:px-12 relative z-20 flex-grow">
+        {/* Jarak antar section (space-y) diperkecil di mobile (8) dan melebar di desktop (16) */}
+        <div className="space-y-8 md:space-y-16 py-6 md:py-10">
+          
           <JustRelease movies={movies} />
+          
+          {/* Tambahan border atau pemisah tipis jika diperlukan bisa diletakkan di sini */}
           <PopularWeek movies={movies} />
+          
         </div>
       </main>
       
