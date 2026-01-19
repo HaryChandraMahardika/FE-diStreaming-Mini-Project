@@ -9,7 +9,7 @@ export const useHomeUser = () => {
   const fetchHomeMovies = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await api.get("/movies?all=true");
+      const res = await api.get("movies?all=true");
       if (res.data.success) {
         setMovies(res.data.data);
       }

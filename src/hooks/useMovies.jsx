@@ -44,7 +44,7 @@ export const useMovies = () => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
 
-    api.get("/categories")
+    api.get("categories")
       .then((res) => setCategories(res.data.data))
       .catch(console.error);
   }, []);

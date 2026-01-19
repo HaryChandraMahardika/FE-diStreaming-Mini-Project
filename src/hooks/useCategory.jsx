@@ -11,7 +11,7 @@ const useCategory = () => {
       try {
         setLoading(true);
         const res = await api.get(
-          "/categories?all=true"
+          "categories?all=true"
         );
         if (res.data.success) {
           setGenres(res.data.data);

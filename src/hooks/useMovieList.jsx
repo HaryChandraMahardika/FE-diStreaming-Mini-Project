@@ -10,7 +10,7 @@ export const useMovieList = () => {
   const fetchMovies = useCallback(async (params = { all: true }) => {
     try {
       setLoading(true);
-      const response = await api.get('/movies', { params });
+      const response = await api.get('movies', { params });
       if (response.data.success) {
         setMovies(response.data.data);
       }

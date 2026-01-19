@@ -16,7 +16,7 @@ export const useMovieDetail = (id) => {
 
     try {
       setLoading(true);
-      const res = await api.get(`/movies/${id}`, {
+      const res = await api.get(`movies/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 

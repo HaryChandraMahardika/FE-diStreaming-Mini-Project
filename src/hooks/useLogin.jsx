@@ -33,7 +33,7 @@ export const useLogin = () => {
         password: form.password,
       };
 
-      const res = await api.post("/login", payload);
+      const res = await api.post("login", payload);
       const { token, user } = res.data.data;
 
       if (token) {

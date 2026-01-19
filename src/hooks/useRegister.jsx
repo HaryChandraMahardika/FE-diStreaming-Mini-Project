@@ -30,7 +30,7 @@ export const useRegister = () => {
     setErrors({});
 
     try {
-      const res = await api.post('/register', formData);
+      const res = await api.post('register', formData);
       
       if (res.data.success) {
         localStorage.setItem('token', res.data.data.token);

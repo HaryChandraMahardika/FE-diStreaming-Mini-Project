@@ -23,7 +23,7 @@ export const useProfile = () => {
         return;
       }
 
-      const res = await api.get("/me", {
+      const res = await api.get("me", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
