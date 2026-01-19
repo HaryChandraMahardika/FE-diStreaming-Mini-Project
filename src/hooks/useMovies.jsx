@@ -10,7 +10,6 @@ export const useMovies = () => {
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
 
-  // Inisialisasi state langsung dari URL Search Params
   const [filters, setFilters] = useState({
     page: parseInt(searchParams.get("page")) || 1,
     search: searchParams.get("search") || "",
@@ -35,7 +34,6 @@ export const useMovies = () => {
     }
   }, []);
 
-  // 1. Efek untuk Auth & Kategori (Hanya sekali jalan)
   useEffect(() => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -45,14 +43,10 @@ export const useMovies = () => {
       .catch(console.error);
   }, []);
 
-  // 2. Efek Sinkronisasi: State Filters -> URL Params & API Call
   useEffect(() => {
     const newParams = {};
-    
-    // Hanya masukkan filter yang memiliki nilai ke URL
     Object.keys(filters).forEach((key) => {
       if (filters[key]) {
-        // Jangan tampilkan page=1 di URL agar lebih bersih
         if (key === "page" && filters[key] === 1) return;
         newParams[key] = filters[key].toString();
       }
@@ -66,7 +60,6 @@ export const useMovies = () => {
     setFilters((prev) => ({
       ...prev,
       [key]: value,
-      // Reset ke halaman 1 jika filter selain page berubah
       page: key === "page" ? value : 1,
     }));
   };

@@ -7,16 +7,8 @@ const Register = () => {
   const { formData, handleChange, register, loading, errors } = useRegister();
 
   return (
-    /* py-10 ditambahkan agar form tidak terpotong di layar HP yang pendek saat scroll */
     <div className="min-h-screen bg-[#0f171e] flex items-center justify-center px-4 py-10 md:py-14 font-sans">
-      
-      {/* Responsive Perbaikan: 
-        1. p-6 di mobile, p-10 di desktop.
-        2. max-w-md menjaga lebar tetap ideal.
-      */}
       <div className="max-w-md w-full bg-[#1a242e] p-6 md:p-10 rounded-2xl shadow-2xl border border-white/5 relative">
-        
-        {/* Tombol Close disesuaikan posisinya di mobile */}
         <button 
           type="button"
           onClick={() => navigate('/')}
@@ -33,7 +25,6 @@ const Register = () => {
         </p>
 
         <form onSubmit={register} className="space-y-4 md:space-y-5">
-          {/* Reusable Input Group Logic */}
           {[
             { label: 'Full Name', name: 'fullname', type: 'text', placeholder: 'Nama Lengkap' },
             { label: 'Username', name: 'username', type: 'text', placeholder: 'username_anda' },

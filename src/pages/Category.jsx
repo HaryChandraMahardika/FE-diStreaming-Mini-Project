@@ -34,7 +34,6 @@ const Category = () => {
       />
 
       <main className="flex-grow pt-10 md:pt-16 px-4 md:px-16 pb-20">
-        {/* Header Section: Responsif Stack */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8 md:mb-10">
           <h1 className="text-2xl md:text-3xl font-black italic uppercase tracking-tighter border-l-4 border-red-600 pl-4">
             {!genreName ? "Semua Kategori" : `Genre: ${genreName}`}
@@ -51,14 +50,12 @@ const Category = () => {
         </div>
 
         {loading ? (
-          /* Skeleton Loader: Responsif Grid */
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
             {[...Array(10)].map((_, i) => (
               <div key={i} className="h-40 md:h-48 bg-[#1a242e] animate-pulse rounded-xl"></div>
             ))}
           </div>
         ) : (
-          /* Content Grid: 2 Kolom di HP, 5 di Desktop */
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
             {!genreName ? (
               genres.map((genre) => (
@@ -80,7 +77,6 @@ const Category = () => {
                 <MovieCard key={movie.movie_id} movie={movie} />
               ))
             ) : (
-              /* Empty State */
               <div className="col-span-full text-center py-16 md:py-20 bg-[#1a242e] rounded-xl border border-dashed border-gray-700 px-6">
                 <p className="text-gray-500 italic text-sm md:text-base">
                   Tidak ada film ditemukan dalam kategori "{genreName}".

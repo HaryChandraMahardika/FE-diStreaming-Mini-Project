@@ -8,10 +8,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#0f171e] flex items-center justify-center px-4 py-8 font-sans">
-      {/* Responsive Perbaikan: 
-        1. p-6 di mobile, p-10 di desktop agar konten tidak terhimpit.
-        2. max-w-md memastikan card tidak melebar terlalu luas di monitor besar.
-      */}
       <div className="w-full max-w-md bg-[#1a242e] border border-gray-700 rounded-lg p-6 md:p-10 shadow-2xl relative">
         
         <button 

@@ -9,8 +9,6 @@ const MovieList = () => {
     movies, categories, isLoggedIn, pagination, loading, 
     filters, updateFilter, resetFilters, handleLogout 
   } = useMovies();
-
-  // Mengecek apakah ada filter aktif selain page
   const hasActiveFilter = Object.keys(filters).some(
     (key) => key !== "page" && filters[key] !== ""
   );
@@ -22,16 +20,12 @@ const MovieList = () => {
       <div className="px-4 md:px-16 pt-6 md:pt-10">
         <div className="flex flex-col space-y-4 mb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-3 md:gap-4 items-center">
-            
-            {/* Search */}
             <input
               placeholder="Search title..."
               value={filters.search}
               onChange={(e) => updateFilter("search", e.target.value)}
               className="bg-[#1a242e] border border-gray-600 px-3 py-2 rounded text-sm focus:border-red-600 outline-none w-full lg:w-64"
             />
-
-            {/* Category */}
             <select
               value={filters.category_id}
               onChange={(e) => updateFilter("category_id", e.target.value)}
@@ -42,8 +36,6 @@ const MovieList = () => {
                 <option key={c.category_id} value={c.category_id}>{c.category_name}</option>
               ))}
             </select>
-
-            {/* Sort By */}
             <select
               value={filters.sort_by}
               onChange={(e) => updateFilter("sort_by", e.target.value)}
@@ -54,8 +46,6 @@ const MovieList = () => {
               <option value="rating">Rating</option>
               <option value="release_year">Release Year</option>
             </select>
-
-            {/* Order */}
             <select
               value={filters.order}
               onChange={(e) => updateFilter("order", e.target.value)}
@@ -65,8 +55,6 @@ const MovieList = () => {
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
             </select>
-
-            {/* Clear Button */}
             {hasActiveFilter && (
               <button 
                 onClick={resetFilters} 
@@ -77,8 +65,6 @@ const MovieList = () => {
             )}
           </div>
         </div>
-
-        {/* Movies Grid */}
         {loading ? (
           <div className="flex flex-col justify-center items-center py-20">
             <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4"></div>

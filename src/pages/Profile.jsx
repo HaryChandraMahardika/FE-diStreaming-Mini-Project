@@ -23,14 +23,8 @@ const Profile = () => {
   return (
     <div className="bg-[#0f171e] min-h-screen text-white flex flex-col">
       <Navbar isLoggedIn={true} onLogout={handleLogout} />
-      
-      {/* px-4 di mobile agar margin pas, py-6 agar tidak terlalu jauh jarak atasnya */}
       <main className="flex-grow px-4 md:px-16 py-6 md:py-10">
-        
-        {/* Profile Header: flex-col di mobile, flex-row di desktop */}
         <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4 md:gap-8 mb-10 pb-8 border-b border-white/5">
-          
-          {/* Avatar: Ukuran disesuaikan */}
           <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-red-600 flex items-center justify-center text-3xl md:text-5xl font-black uppercase shadow-2xl border-4 border-[#1a242e]">
             {user.fullname?.[0] || user.username?.[0]}
           </div>
@@ -47,15 +41,12 @@ const Profile = () => {
             </div>
           </div>
         </div>
-
-        {/* Watchlist Section */}
         <div>
           <h2 className="text-lg md:text-xl font-bold mb-6 border-l-4 border-red-600 pl-4 uppercase tracking-wider">
             My Watchlist
           </h2>
 
           {user.watchlists?.length > 0 ? (
-            /* Responsive Grid: 2 kolom di HP, 3 di Tablet, 5 di Desktop */
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
               {user.watchlists.map(
                 (item) => item.movie && <MovieCard key={item.id} movie={item.movie} />
