@@ -3,31 +3,27 @@ import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 export const useMovies = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
 
-  const initialPage = parseInt(searchParams.get("page")) || 1;
-  const initialSearch = searchParams.get("query") || "";
-
+  // Inisialisasi state langsung dari URL Search Params
   const [filters, setFilters] = useState({
-    page: initialPage,
-    search: initialSearch,
-    category_id: "",
-    release_year: "",
-    sort_by: "",
-    order: "",
+    page: parseInt(searchParams.get("page")) || 1,
+    search: searchParams.get("search") || "",
+    category_id: searchParams.get("category_id") || "",
+    release_year: searchParams.get("release_year") || "",
+    sort_by: searchParams.get("sort_by") || "",
+    order: searchParams.get("order") || "",
   });
 
   const fetchMovies = useCallback(async (currentFilters) => {
     try {
       setLoading(true);
-      const res = await axios.get("/api/movies", {
-        params: currentFilters,
-      });
+      const res = await axios.get("/api/movies", { params: currentFilters });
       if (res.data.success) {
         setMovies(res.data.data);
         setPagination(res.data.meta);
@@ -39,6 +35,7 @@ export const useMovies = () => {
     }
   }, []);
 
+  // 1. Efek untuk Auth & Kategori (Hanya sekali jalan)
   useEffect(() => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -48,27 +45,20 @@ export const useMovies = () => {
       .catch(console.error);
   }, []);
 
-  useEffect(() => {
-    const q = searchParams.get("query") || "";
-    const p = parseInt(searchParams.get("page")) || 1;
-    const isYear = /^\d{4}$/.test(q);
-
-    setFilters((prev) => ({
-      ...prev,
-      search: isYear ? "" : q,
-      release_year: isYear ? q : "",
-      page: p,
-    }));
-  }, [searchParams]);
-
+  // 2. Efek Sinkronisasi: State Filters -> URL Params & API Call
   useEffect(() => {
     const newParams = {};
-    if (filters.search) newParams.query = filters.search;
-    if (filters.release_year) newParams.query = filters.release_year;
-    if (filters.page > 1) newParams.page = filters.page;
     
+    // Hanya masukkan filter yang memiliki nilai ke URL
+    Object.keys(filters).forEach((key) => {
+      if (filters[key]) {
+        // Jangan tampilkan page=1 di URL agar lebih bersih
+        if (key === "page" && filters[key] === 1) return;
+        newParams[key] = filters[key].toString();
+      }
+    });
+
     setSearchParams(newParams, { replace: true });
-    
     fetchMovies(filters);
   }, [filters, fetchMovies, setSearchParams]);
 
@@ -76,18 +66,12 @@ export const useMovies = () => {
     setFilters((prev) => ({
       ...prev,
       [key]: value,
+      // Reset ke halaman 1 jika filter selain page berubah
       page: key === "page" ? value : 1,
     }));
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    sessionStorage.clear();
-    window.location.href = "/";
-  };
-
   const resetFilters = () => {
-    setSearchParams({});
     setFilters({
       page: 1,
       search: "",
@@ -98,16 +82,14 @@ export const useMovies = () => {
     });
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = "/";
+  };
+
   return { 
-    movies, 
-    categories, 
-    isLoggedIn, 
-    pagination, 
-    loading, 
-    filters, 
-    updateFilter, 
-    resetFilters, 
-    setSearchParams, 
-    handleLogout 
+    movies, categories, isLoggedIn, pagination, 
+    loading, filters, updateFilter, resetFilters, handleLogout 
   };
 };

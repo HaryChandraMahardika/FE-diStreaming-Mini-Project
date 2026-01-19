@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 const DownloadBanner = () => {
   return (
     <div className="relative min-h-[500px] md:h-[600px] w-full flex flex-col md:flex-row border-t border-gray-900 overflow-hidden bg-black">
-      
-      {/* Bagian Teks */}
+
       <div className="w-full md:w-[50%] bg-black flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 space-y-6 z-20 order-2 md:order-1">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white text-center md:text-left">
           Download and go
@@ -24,7 +23,6 @@ const DownloadBanner = () => {
         </div>
       </div>
 
-      {/* Bagian Gambar */}
       <div className="w-full h-[300px] md:h-auto md:w-[50%] relative order-1 md:order-2">
         <div 
           className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-right"
@@ -32,7 +30,6 @@ const DownloadBanner = () => {
             backgroundImage: `url('https://images-na.ssl-images-amazon.com/images/G/01/digital/video/Magellan_MLP/PV_Benefits_Dowlnoad_Magnet_UPDATED._CB1551124792_.jpg')`,
           }}
         >
-          {/* Overlay Gradient: Di mobile memudar ke bawah (hitam), di desktop memudar ke kanan */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent md:via-black/40 md:bg-gradient-to-r md:from-black to-transparent w-full z-10"></div>
         </div>
       </div>

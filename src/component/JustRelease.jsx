@@ -17,7 +17,6 @@ const JustRelease = ({ movies }) => {
     <section className="py-8 md:py-10 px-4 md:px-0">
       <div className="flex justify-between items-end mb-6 md:mb-8">
         <div>
-          {/* Ukuran text h2 mengecil di mobile */}
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
             Just Release
           </h2>
@@ -30,16 +29,14 @@ const JustRelease = ({ movies }) => {
 
       <Swiper
         modules={[Navigation]}
-        spaceBetween={12} // Jarak antar kartu lebih rapat di mobile
-        slidesPerView={2.2} // Menampilkan 2 kartu penuh dan sedikit bagian kartu ke-3
+        spaceBetween={12}
+        slidesPerView={2.2} 
         navigation={true}
         breakpoints={{
-          // Tablet
           640: { 
             slidesPerView: 3.5,
             spaceBetween: 20 
           },
-          // Desktop
           1024: { 
             slidesPerView: 5,
             spaceBetween: 20 

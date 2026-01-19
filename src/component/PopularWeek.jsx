@@ -29,18 +29,16 @@ const PopularWeek = ({ movies }) => {
       <Swiper
         modules={[Navigation]}
         spaceBetween={15}
-        slidesPerView={1.2} // Menampilkan 1 card penuh + potongan card berikutnya di HP
+        slidesPerView={1.2} 
         navigation={{
           nextEl: '.popular-next',
           prevEl: '.popular-prev',
         }}
         breakpoints={{
-          // Tablet
           640: { 
             slidesPerView: 2.2,
             spaceBetween: 20 
           },
-          // Desktop
           1024: { 
             slidesPerView: 4,
             spaceBetween: 30 
@@ -51,13 +49,11 @@ const PopularWeek = ({ movies }) => {
         {popularMovies.map((movie, index) => (
           <SwiperSlide key={movie.movie_id}>
             <div className="flex items-center gap-2 md:gap-4 group cursor-pointer py-2">
-              
-              {/* Angka Peringkat: Mengecil di mobile (text-4xl), membesar di desktop (text-6xl) */}
+
               <span className="text-4xl md:text-6xl font-black text-[#1a1a1a] group-hover:text-red-600 transition-colors duration-300 min-w-[40px] md:min-w-[60px] text-center">
                 {index + 1}
               </span>
-              
-              {/* Card Container */}
+
               <div className="flex-1 bg-[#141414] p-3 rounded-xl flex gap-3 md:gap-4 items-center border border-white/5 group-hover:border-red-600/50 transition-all duration-300">
                 <img 
                   src={movie.poster_url} 

@@ -3,13 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
-    /* Perubahan: 
-       - h-auto di mobile agar konten tidak terpotong jika layar pendek.
-       - flex-col-reverse agar di mobile gambar muncul di atas/belakang, lalu teks di bawahnya.
-    */
     <div className="relative min-h-screen w-full flex flex-col-reverse md:flex-row pt-14 bg-black">
-      
-      {/* Kolom Teks */}
+
       <div className="w-full md:w-[45%] bg-black flex flex-col justify-center px-6 md:px-16 py-10 md:py-0 space-y-6 z-20">
         <h1 className="text-3xl md:text-5xl font-bold leading-tight text-white">
           Welcome to diStreaming

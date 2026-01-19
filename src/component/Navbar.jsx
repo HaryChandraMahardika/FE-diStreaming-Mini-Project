@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 const Navbar = ({ isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State untuk toggle menu mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   const handleSearch = (value) => {
     setSearch(value);
@@ -15,10 +15,8 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
   return (
     <nav className="bg-[#0f171e] text-white sticky top-0 z-50 shadow-lg">
       <div className="px-4 md:px-12 py-4 flex items-center justify-between">
-        
-        {/* LEFT SIDE: Logo & Desktop Menu */}
+
         <div className="flex items-center space-x-4 md:space-x-8">
-          {/* Button Hamburger (Hanya muncul di Mobile) */}
           <button 
             className="md:hidden text-white focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -39,7 +37,6 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
             </p>
           </Link>
 
-          {/* Nav Links (Desktop) */}
           <div className="hidden md:flex space-x-6 font-bold text-gray-400">
             <NavLink to="/" className={({ isActive }) => isActive ? "text-white border-b-2 border-white pb-1" : "hover:text-white"}>Home</NavLink>
             <NavLink to="/movies" className={({ isActive }) => isActive ? "text-white border-b-2 border-white pb-1" : "hover:text-white"}>Movies</NavLink>
@@ -47,9 +44,7 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
           </div>
         </div>
 
-        {/* RIGHT SIDE: Search & Auth */}
         <div className="flex items-center space-x-3 md:space-x-4">
-          {/* SearchBar (Sekarang otomatis menyesuaikan lebar di mobile via SearchBar component kamu) */}
           <SearchBar onSearch={handleSearch} />
 
           {isLoggedIn ? (
@@ -73,7 +68,6 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
         </div>
       </div>
 
-      {/* MOBILE MENU (Dropdown) */}
       {isMenuOpen && (
         <div className="md:hidden bg-[#1b2530] border-t border-gray-700 px-6 py-4 flex flex-col space-y-4 font-bold">
           <NavLink to="/" onClick={() => setIsMenuOpen(false)} className="hover:text-red-500">Home</NavLink>
