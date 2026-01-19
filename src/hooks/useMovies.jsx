@@ -14,7 +14,7 @@ export const useMovies = () => {
     page: parseInt(searchParams.get("page")) || 1,
     search: searchParams.get("search") || "",
     category_id: searchParams.get("category_id") || "",
-    release_year: searchParams.get("release_year") || "",
+    release_year: searchParams.get("year") || "",
     sort_by: searchParams.get("sort_by") || "",
     order: searchParams.get("order") || "",
   });
