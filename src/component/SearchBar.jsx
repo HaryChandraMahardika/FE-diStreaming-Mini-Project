@@ -4,18 +4,17 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 const SearchBar = ({ placeholder = "Search..." }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("q") || "");
+  const [query, setQuery] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
-    setQuery(searchParams.get("q") || "");
+    setQuery(searchParams.get("search") || "");
   }, [searchParams]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const trimmed = query.trim();
-    if (!trimmed) return;
-
-    navigate(`/movies?q=${encodeURIComponent(trimmed)}`);
+    
+    navigate(`/movies?search=${encodeURIComponent(trimmed)}`);
   };
 
   return (

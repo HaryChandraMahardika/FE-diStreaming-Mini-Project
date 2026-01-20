@@ -10,11 +10,12 @@ export const useMovies = () => {
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
 
+  // Inisialisasi filter dari URL
   const [filters, setFilters] = useState({
     page: parseInt(searchParams.get("page")) || 1,
     search: searchParams.get("search") || "",
     category_id: searchParams.get("category_id") || "",
-    release_year: searchParams.get("year") || "",
+    year: searchParams.get("year") || "",
     sort_by: searchParams.get("sort_by") || "",
     order: searchParams.get("order") || "",
   });
@@ -44,6 +45,19 @@ export const useMovies = () => {
   }, []);
 
   useEffect(() => {
+    const searchFromUrl = searchParams.get("search") || "";
+    const pageFromUrl = parseInt(searchParams.get("page")) || 1;
+    const categoryFromUrl = searchParams.get("category_id") || "";
+
+    setFilters((prev) => ({
+      ...prev,
+      search: searchFromUrl,
+      page: pageFromUrl,
+      category_id: categoryFromUrl
+    }));
+  }, [searchParams]);
+
+  useEffect(() => {
     const newParams = {};
     Object.keys(filters).forEach((key) => {
       if (filters[key]) {
@@ -69,7 +83,7 @@ export const useMovies = () => {
       page: 1,
       search: "",
       category_id: "",
-      release_year: "",
+      year: "",
       sort_by: "",
       order: "",
     });
